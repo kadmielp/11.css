@@ -1,0 +1,99 @@
+/**
+ * 11.css — drop-down (ComboBox) and list box.
+ */
+
+select {
+  box-sizing: border-box;
+  min-height: 32px;
+  padding: 5px 34px 6px 11px;
+  border: 1px solid var(--w11-control-stroke-top);
+  border-bottom-color: var(--w11-control-stroke-bottom);
+  border-radius: var(--w11-radius-control);
+  background-color: var(--w11-control-fill);
+  background-image: svg-load(
+    "icon/chevron_down_12_regular.svg",
+    fill=rgba(0, 0, 0, 0.606)
+  );
+  background-position: right 11px center;
+  background-repeat: no-repeat;
+  background-size: 12px;
+  color: var(--w11-text);
+  font-family: var(--w11-font);
+  font-size: var(--w11-font-size);
+  line-height: 20px;
+  -webkit-appearance: none;
+  appearance: none;
+
+  &:not(:disabled):hover {
+    background-color: var(--w11-control-fill-hover);
+  }
+
+  &:not(:disabled):active {
+    background-color: var(--w11-control-fill-pressed);
+    color: var(--w11-text-2);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--w11-focus-outer);
+    outline-offset: 1px;
+  }
+
+  &:disabled {
+    border-color: var(--w11-control-stroke);
+    background-color: var(--w11-control-fill-disabled);
+    background-image: svg-load(
+      "icon/chevron_down_12_regular.svg",
+      fill=rgba(0, 0, 0, 0.3614)
+    );
+    color: var(--w11-text-disabled);
+  }
+
+  /* List box */
+  &[multiple],
+  &[size]:not([size="1"]) {
+    padding: 4px;
+    border-color: var(--w11-control-stroke);
+    background-image: none;
+    background-color: var(--w11-control-fill);
+  }
+}
+
+option {
+  background-color: var(--w11-flyout);
+  color: var(--w11-text);
+}
+
+select[multiple] option,
+select[size]:not([size="1"]) option {
+  padding: 6px 8px;
+  border-radius: var(--w11-radius-control);
+  background-color: transparent;
+
+  &:checked {
+    background: var(--w11-subtle-hover)
+      linear-gradient(var(--w11-accent), var(--w11-accent)) left center / 3px
+      16px no-repeat;
+    color: var(--w11-text);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not(.win11-light) select:not([multiple]) {
+    background-image: svg-load(
+      "icon/chevron_down_12_regular.svg",
+      fill=rgba(255, 255, 255, 0.786)
+    );
+  }
+}
+
+[data-theme="dark"] select:not([multiple]),
+.win11-dark select:not([multiple]) {
+  background-image: svg-load(
+    "icon/chevron_down_12_regular.svg",
+    fill=rgba(255, 255, 255, 0.786)
+  );
+}

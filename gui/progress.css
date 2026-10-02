@@ -1,0 +1,104 @@
+/**
+ * 11.css — progress bar and progress ring.
+ *
+ *   <progress value="40" max="100"></progress>   determinate
+ *   <progress></progress>                         indeterminate
+ *   <span class="progress-ring" role="progressbar" aria-label="Loading"></span>
+ */
+
+progress {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 3px;
+  min-width: 130px;
+  border: none;
+  border-radius: 1.5px;
+  /* The track is a 1px line centred under the 3px indicator. */
+  background: linear-gradient(
+      var(--w11-control-strong-stroke),
+      var(--w11-control-strong-stroke)
+    )
+    center / 100% 1px no-repeat;
+  color: var(--w11-accent);
+  vertical-align: middle;
+  -webkit-appearance: none;
+  appearance: none;
+
+  &::-webkit-progress-bar {
+    background: transparent;
+  }
+
+  &::-webkit-progress-value {
+    border-radius: 1.5px;
+    background: var(--w11-accent);
+  }
+
+  &::-moz-progress-bar {
+    border-radius: 1.5px;
+    background: var(--w11-accent);
+  }
+}
+
+progress:not([value]) {
+  background:
+    linear-gradient(var(--w11-accent), var(--w11-accent)) no-repeat,
+    linear-gradient(
+        var(--w11-control-strong-stroke),
+        var(--w11-control-strong-stroke)
+      )
+      center / 100% 1px no-repeat;
+  background-size:
+    40% 3px,
+    100% 1px;
+  animation: w11-progress-indeterminate 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  &::-webkit-progress-bar {
+    background: transparent;
+  }
+
+  &::-moz-progress-bar {
+    background: transparent;
+  }
+}
+
+@keyframes w11-progress-indeterminate {
+  0% {
+    background-position:
+      -70% 0,
+      center;
+  }
+
+  100% {
+    background-position:
+      170% 0,
+      center;
+  }
+}
+
+.progress-ring {
+  --w11-ring-size: 32px;
+
+  box-sizing: border-box;
+  display: inline-block;
+  width: var(--w11-ring-size);
+  height: var(--w11-ring-size);
+  border: calc(var(--w11-ring-size) / 10.67) solid transparent;
+  border-top-color: var(--w11-accent);
+  border-right-color: var(--w11-accent);
+  border-radius: 50%;
+  vertical-align: middle;
+  animation: w11-progress-ring 1s cubic-bezier(0.5, 0.15, 0.5, 0.85) infinite;
+}
+
+@keyframes w11-progress-ring {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  progress:not([value]),
+  .progress-ring {
+    animation-duration: 6s;
+  }
+}

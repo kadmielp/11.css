@@ -1,0 +1,192 @@
+/**
+ * 11.css — check boxes and toggle switches.
+ *
+ * Same markup as the 98.css family:
+ *   <input type="checkbox" id="x"> <label for="x">Label</label>
+ * Add role="switch" to the input for a Windows 11 toggle switch.
+ */
+
+input[type="checkbox"] {
+  position: fixed;
+  margin: 0;
+  opacity: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: none;
+}
+
+input[type="checkbox"] + label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  margin-left: 28px;
+  color: var(--w11-text);
+  line-height: 20px;
+  user-select: none;
+
+  /* Box */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -28px;
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    border: 1px solid var(--w11-control-strong-stroke);
+    border-radius: var(--w11-radius-control);
+    background: var(--w11-control-alt-fill);
+  }
+
+  /* Glyph */
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -28px;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    background-color: transparent;
+    -webkit-mask: var(--w11-check-glyph, none) center / 12px no-repeat;
+    mask: var(--w11-check-glyph, none) center / 12px no-repeat;
+  }
+}
+
+input[type="checkbox"]:not(:disabled) + label:hover::before {
+  background: var(--w11-control-alt-fill-hover);
+}
+
+input[type="checkbox"]:not(:disabled) + label:active::before {
+  border-color: var(--w11-control-strong-stroke-disabled);
+  background: var(--w11-control-alt-fill-pressed);
+}
+
+input[type="checkbox"]:checked + label,
+input[type="checkbox"]:indeterminate + label {
+  &::before {
+    border-color: var(--w11-accent);
+    background: var(--w11-accent);
+  }
+}
+
+input[type="checkbox"]:checked + label {
+  --w11-check-glyph: svg-load("icon/checkmark_12_regular.svg");
+}
+
+input[type="checkbox"]:indeterminate + label {
+  --w11-check-glyph: svg-load("icon/subtract_12_regular.svg");
+}
+
+input[type="checkbox"]:checked + label::after,
+input[type="checkbox"]:indeterminate + label::after {
+  background-color: var(--w11-on-accent);
+}
+
+input[type="checkbox"]:checked:not(:disabled) + label:hover::before,
+input[type="checkbox"]:indeterminate:not(:disabled) + label:hover::before {
+  border-color: transparent;
+  background: color-mix(in srgb, var(--w11-accent) 90%, transparent);
+}
+
+input[type="checkbox"]:checked:not(:disabled) + label:active::before,
+input[type="checkbox"]:indeterminate:not(:disabled) + label:active::before {
+  border-color: transparent;
+  background: color-mix(in srgb, var(--w11-accent) 80%, transparent);
+}
+
+input[type="checkbox"]:disabled + label {
+  color: var(--w11-text-disabled);
+
+  &::before {
+    border-color: var(--w11-control-strong-stroke-disabled);
+    background: transparent;
+  }
+}
+
+input[type="checkbox"]:disabled:checked + label::before,
+input[type="checkbox"]:disabled:indeterminate + label::before {
+  border-color: transparent;
+  background: var(--w11-accent-disabled);
+}
+
+input[type="checkbox"]:disabled:checked + label::after,
+input[type="checkbox"]:disabled:indeterminate + label::after {
+  background-color: var(--w11-on-accent-disabled);
+}
+
+input[type="checkbox"]:focus-visible + label::before {
+  outline: 2px solid var(--w11-focus-outer);
+  outline-offset: 1px;
+}
+
+/* Toggle switch: <input type="checkbox" role="switch"> */
+input[type="checkbox"][role="switch"] + label {
+  margin-left: 52px;
+
+  &::before {
+    left: -52px;
+    width: 40px;
+    border-radius: 10px;
+  }
+
+  /* Knob */
+  &::after {
+    left: -48px;
+    width: 12px;
+    height: 12px;
+    margin-top: -6px;
+    border-radius: 50%;
+    background-color: var(--w11-text-2);
+    -webkit-mask: none;
+    mask: none;
+    transition:
+      left 0.15s ease,
+      width 0.1s ease,
+      height 0.1s ease,
+      margin 0.1s ease;
+  }
+
+  &:hover::after {
+    width: 14px;
+    height: 14px;
+    margin-top: -7px;
+    margin-left: -1px;
+  }
+
+  &:active::after {
+    width: 17px;
+  }
+}
+
+input[type="checkbox"][role="switch"]:checked + label {
+  --w11-check-glyph: none;
+
+  &::after {
+    left: -28px;
+    background-color: var(--w11-on-accent);
+  }
+
+  &:active::after {
+    left: -33px;
+  }
+}
+
+input[type="checkbox"][role="switch"]:disabled + label {
+  &::after {
+    background-color: var(--w11-text-disabled);
+  }
+
+  &:hover::after {
+    width: 12px;
+    height: 12px;
+    margin-top: -6px;
+    margin-left: 0;
+  }
+}
+
+input[type="checkbox"][role="switch"]:disabled:checked + label::after {
+  background-color: var(--w11-on-accent-disabled);
+}

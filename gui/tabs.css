@@ -1,0 +1,145 @@
+/**
+ * 11.css — tabs.
+ *
+ *   <menu role="tablist">
+ *     <button role="tab" aria-selected="true" aria-controls="a">A</button> …
+ *   </menu>
+ *   <article role="tabpanel" id="a">…</article>
+ *
+ * Default: the Windows 11 Settings selector (accent pill under the selected
+ * tab). Add class="tabview" to the menu for browser-style tabs. The 98.css
+ * <li role="tab"><a> markup is supported too.
+ */
+
+menu[role="tablist"] {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0 0 8px;
+  padding: 0;
+  list-style: none;
+  text-indent: 0;
+
+  & > button[role="tab"],
+  & > li[role="tab"] {
+    position: relative;
+    display: block;
+    min-width: 0;
+    min-height: 0;
+    height: 36px;
+    margin: 0;
+    padding: 0 12px;
+    border: none;
+    border-radius: var(--w11-radius-control);
+    background: transparent;
+    color: var(--w11-text-2);
+    font-size: var(--w11-font-size);
+    line-height: 36px;
+    white-space: nowrap;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      border-radius: 1.5px;
+      background: var(--w11-accent);
+      transform: translateX(-50%);
+      transition: width 0.15s ease;
+    }
+
+    &:hover {
+      background: var(--w11-subtle-hover);
+      color: var(--w11-text);
+    }
+
+    &:active {
+      background: var(--w11-subtle-pressed);
+      color: var(--w11-text-2);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--w11-focus-outer);
+      outline-offset: -2px;
+    }
+  }
+
+  & > li[role="tab"] > a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  & > [role="tab"][aria-selected="true"] {
+    color: var(--w11-text);
+    font-weight: 600;
+
+    &::after {
+      width: 16px;
+    }
+  }
+
+  & > [role="tab"]:disabled,
+  & > [role="tab"][aria-disabled="true"] {
+    background: transparent;
+    color: var(--w11-text-disabled);
+  }
+
+  &.justified > [role="tab"],
+  &.multirows > [role="tab"] {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
+
+[role="tabpanel"] {
+  position: relative;
+  clear: both;
+  margin: 0;
+  padding: 16px;
+  border: 1px solid var(--w11-card-stroke);
+  border-radius: var(--w11-radius-overlay);
+  background: var(--w11-card);
+}
+
+/* Browser-style TabView */
+menu[role="tablist"].tabview {
+  gap: 0;
+  margin: 0;
+  padding: 0 8px;
+
+  & > [role="tab"] {
+    height: 32px;
+    margin-top: 4px;
+    padding: 0 16px;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: var(--w11-radius-overlay) var(--w11-radius-overlay) 0 0;
+    font-weight: 400;
+    line-height: 31px;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  & > [role="tab"][aria-selected="true"] {
+    z-index: 1;
+    margin-bottom: -1px;
+    border-color: var(--w11-card-stroke);
+    background: var(--w11-layer-solid);
+    color: var(--w11-text);
+  }
+
+  & + [role="tabpanel"] {
+    border-radius: var(--w11-radius-overlay);
+    background: var(--w11-layer-solid);
+  }
+}

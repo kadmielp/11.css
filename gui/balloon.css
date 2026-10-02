@@ -1,0 +1,40 @@
+/**
+ * 11.css — balloon / tooltip.
+ *
+ *   <div role="tooltip">Text</div>
+ *
+ * Windows 11 tooltips have no tail. The 7.css position classes (.is-top,
+ * .is-bottom, .is-left, .is-right) are accepted and add a small offset so
+ * existing markup keeps its spacing.
+ */
+
+[role="tooltip"] {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-block;
+  max-width: 320px;
+  padding: 5px 8px 7px;
+  border: 1px solid var(--w11-surface-stroke);
+  border-radius: var(--w11-radius-control);
+  background: var(--w11-flyout);
+  box-shadow: var(--w11-shadow-tooltip);
+  color: var(--w11-text);
+  font-size: var(--w11-font-size-caption);
+  line-height: 16px;
+
+  &.is-top {
+    margin-top: 6px;
+  }
+
+  &.is-bottom {
+    margin-bottom: 6px;
+  }
+
+  &.is-left {
+    margin-left: 6px;
+  }
+
+  &.is-right {
+    margin-right: 6px;
+  }
+}

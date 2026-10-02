@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>11.css - A design system for building faithful recreations of Windows 11 UIs</title>
+    <meta name="description" content="11.css is a CSS library that styles semantic HTML to look like Windows 11. Part of the 98.css, XP.css and 7.css family." />
+    <link rel="stylesheet" href="11.css" />
+    <link rel="stylesheet" href="docs.css" />
+    <script>
+      // Docs only: restore the theme picked in the toolbar.
+      try {
+        const theme = localStorage.getItem("11css-theme");
+        if (theme === "light" || theme === "dark") {
+          document.documentElement.dataset.theme = theme;
+        }
+      } catch (error) {}
+    </script>
+  </head>
+  <body>
+    <div class="docs">
+      <nav class="docs-nav" aria-label="Contents">
+        <ul class="tree-view">
+          <li><a href="#intro">Intro</a></li>
+          <li>
+            <details open>
+              <summary>Components</summary>
+              <ul>
+                <li><a href="#window">Window</a></li>
+                <li><a href="#button">Button</a></li>
+                <li><a href="#checkbox">CheckBox</a></li>
+                <li><a href="#toggle-switch">ToggleSwitch</a></li>
+                <li><a href="#option-button">OptionButton</a></li>
+                <li><a href="#text-box">TextBox</a></li>
+                <li><a href="#dropdown">Dropdown</a></li>
+                <li><a href="#slider">Slider</a></li>
+                <li><a href="#progress">ProgressBar</a></li>
+                <li><a href="#group-box">GroupBox</a></li>
+                <li><a href="#tabs">Tabs</a></li>
+                <li><a href="#list-view">ListView</a></li>
+                <li><a href="#tree-view">TreeView</a></li>
+                <li><a href="#tooltip">Tooltip</a></li>
+              </ul>
+            </details>
+          </li>
+          <li><a href="#theming">Theming</a></li>
+          <li><a href="#installation">Installation</a></li>
+          <li><a href="#credits">Credits</a></li>
+          <li><a href="compare.html">Compare with 98 / XP / 7</a></li>
+        </ul>
+      </nav>
+
+      <main class="docs-main">
+        <section id="intro">
+          <h1>11.css</h1>
+          <p class="docs-lead">
+            A design system for building faithful recreations of Windows 11 UIs. v<%= version %>
+          </p>
+          <p>
+            11.css takes semantic HTML and makes it look like Windows 11. It is
+            the next member of the
+            <a href="https://github.com/jdan/98.css">98.css</a>,
+            <a href="https://github.com/botoxparty/XP.css">XP.css</a> and
+            <a href="https://github.com/khang-nd/7.css">7.css</a> family and
+            uses the same markup, so swapping the stylesheet restyles an
+            existing 98/XP/7 page without changing its HTML.
+          </p>
+          <p>
+            It ships no JavaScript, so it works with any frontend framework.
+            Accessibility comes from semantic HTML: buttons are
+            <code>&lt;button&gt;</code>, inputs have labels, tabs use
+            <code>role="tab"</code>, and title-bar buttons are named with
+            <code>aria-label</code>.
+          </p>
+
+          <div class="docs-toolbar" role="group" aria-label="Docs appearance">
+            <div class="field-row">
+              <label for="docs-theme">Theme</label>
+              <select id="docs-theme">
+                <option value="system">Use system setting</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+              </select>
+            </div>
+            <div class="field-row">
+              <label for="docs-accent">Accent colour</label>
+              <input type="color" id="docs-accent" value="#005fb8" />
+              <button id="docs-accent-reset">Reset</button>
+            </div>
+          </div>
+
+          <%- example(`
+            <div class="window" style="width: 320px">
+              <div class="title-bar">
+                <div class="title-bar-text">My First Program</div>
+                <div class="title-bar-controls">
+                  <button aria-label="Minimize"></button>
+                  <button aria-label="Maximize"></button>
+                  <button aria-label="Close"></button>
+                </div>
+              </div>
+              <div class="window-body">
+                <p>Hello, world!</p>
+                <section class="field-row" style="justify-content: flex-end">
+                  <button class="default">OK</button>
+                  <button>Cancel</button>
+                </section>
+              </div>
+            </div>
+          `) %>
+        </section>
+
+        <section class="component" id="window">
+          <h2>Window</h2>
+          <p>
+            A window is a <code>div.window</code> with a
+            <code>.title-bar</code> and a <code>.window-body</code>. Windows 11
+            title bars share the window colour; caption buttons sit flush in the
+            top-right corner and Close turns red on hover.
+          </p>
+
+          <h3>Title bar</h3>
+          <p>
+            Caption buttons are named by <code>aria-label</code>:
+            <code>Minimize</code>, <code>Maximize</code>, <code>Restore</code>,
+            <code>Help</code> and <code>Close</code>. Add
+            <code>.inactive</code> to the title bar for a window without focus.
+          </p>
+          <%- example(`
+            <div class="window" style="width: 320px">
+              <div class="title-bar">
+                <div class="title-bar-text">A title bar</div>
+                <div class="title-bar-controls">
+                  <button aria-label="Minimize"></button>
+                  <button aria-label="Restore"></button>
+                  <button aria-label="Close"></button>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="window" style="width: 320px">
+              <div class="title-bar inactive">
+                <div class="title-bar-text">An inactive title bar</div>
+                <div class="title-bar-controls">
+                  <button aria-label="Help"></button>
+                  <button aria-label="Close"></button>
+                </div>
+              </div>
+            </div>
+          `) %>
+
+          <h3>Window body and status bar</h3>
+          <p>
+            <code>.window-body</code> adds spacing around the content; use
+            <code>.window-body.has-space</code> for padding instead of margin.
+            A <code>.status-bar</code> of <code>.status-bar-field</code>
+            elements goes at the bottom.
+          </p>
+          <%- example(`
+            <div class="window" style="width: 380px">
+              <div class="title-bar">
+                <div class="title-bar-text">Notepad</div>
+                <div class="title-bar-controls">
+                  <button aria-label="Minimize"></button>
+                  <button aria-label="Maximize"></button>
+                  <button aria-label="Close"></button>
+                </div>
+              </div>
+              <div class="window-body">
+                <p>There's so much room for activities!</p>
+              </div>
+              <div class="status-bar">
+                <p class="status-bar-field">Ln 1, Col 1</p>
+                <p class="status-bar-field">100%</p>
+                <p class="status-bar-field">UTF-8</p>
+              </div>
+            </div>
+          `) %>
+
+          <h3>Acrylic</h3>
+          <p>
+            <code>.window.acrylic</code> blurs whatever is behind the window
+            with <code>backdrop-filter</code>, an approximation of Windows 11
+            acrylic. Without it, windows use a solid Mica-like background.
+          </p>
+          <%- example(`
+            <div style="padding: 24px; border-radius: 8px; background: linear-gradient(135deg, #0078d4, #8e44ad 55%, #f39c12)">
+              <div class="window acrylic" style="width: 300px">
+                <div class="title-bar">
+                  <div class="title-bar-text">Acrylic window</div>
+                  <div class="title-bar-controls">
+                    <button aria-label="Close"></button>
+                  </div>
+                </div>
+                <div class="window-body">
+                  <p>The background shows through, blurred.</p>
+                </div>
+              </div>
+            </div>
+          `) %>
+        </section>
+
+        <section class="component" id="button">
+          <h2>Button</h2>
+          <p>
+            A standard <code>&lt;button&gt;</code>. Add
+            <code>class="default"</code> for the accent (primary) button.
+            <code>.active</code> and <code>.focused</code> show the pressed and
+            keyboard-focus states without interaction.
+          </p>
+          <%- example(`
+            <div class="field-row">
+              <button>Click me</button>
+              <button class="default">Save</button>
+              <button disabled>Disabled</button>
+              <button class="default" disabled>Disabled</button>
+            </div>
+            <div class="field-row">
+              <button class="active">Pressed</button>
+              <button class="focused">Focused</button>
+            </div>
+          `) %>
+        </section>
+
+        <section class="component" id="checkbox">
+          <h2>CheckBox</h2>
+          <p>
+            An <code>input[type=checkbox]</code> followed by its
+            <code>label</code>. Set <code>indeterminate</code> from script for
+            the mixed state.
+          </p>
+          <%- example(`
+            <div class="field-row">
+              <input type="checkbox" id="example1" />
+              <label for="example1">This is a checkbox</label>
+            </div>
+            <div class="field-row">
+              <input type="checkbox" id="example2" checked />
+              <label for="example2">Checked</label>
+            </div>
+            <div class="field-row">
+              <input type="checkbox" id="example3" class="indeterminate-demo" />
+              <label for="example3">Indeterminate</label>
+            </div>
+            <div class="field-row">
+              <input type="checkbox" id="example4" disabled />
+              <label for="example4">Disabled</label>
+            </div>
+            <div class="field-row">
+              <input type="checkbox" id="example5" checked disabled />
+              <label for="example5">Disabled and checked</label>
+            </div>
+          `) %>
+        </section>
+
+        <section class="component" id="toggle-switch">
+          <h2>ToggleSwitch</h2>
+          <p>
+            A Windows 11 toggle switch is a checkbox with
+            <code>role="switch"</code>.
+          </p>
+          <%- example(`
+            <div class="field-row">
+              <input type="checkbox" role="switch" id="switch1" checked />
+              <label for="switch1">Bluetooth</label>
+            </div>
+            <div class="field-row">
+              <input type="checkbox" role="switch" id="switch2" />
+              <label for="switch2">Airplane mode</label>
+            </div>
+            <div class="field-row">
+              <input type="checkbox" role="switch" id="switch3" disabled />
+              <label for="switch3">Disabled</label>
+            </div>
+          `) %>
+        </section>
+
+        <section class="component" id="option-button">
+          <h2>OptionButton</h2>
+          <p>
+            An <code>input[type=radio]</code> followed by its
+            <code>label</code>. Group them with a shared <code>name</code>.
+          </p>
+          <%- example(`
+            <div class="field-row">
+              <input id="radio1" type="radio" name="first-example" />
+              <label for="radio1">Yes</label>
+            </div>
+            <div class="field-row">
+              <input id="radio2" type="radio" name="first-example" checked />
+              <label for="radio2">No</label>
+            </div>
+            <div class="field-row">
+              <input id="radio3" type="radio" name="first-example" disabled />
+              <label for="radio3">Maybe (disabled)</label>
+            </div>
+          `) %>
+        </section>
+
+        <section class="component" id="text-box">
+          <h2>TextBox</h2>
+          <p>
+            Text inputs and textareas get a bottom line that turns into an
+            accent underline on focus. <code>input[type=search]</code> shows a
+            magnifier.
+          </p>
+          <%- example(`
+            <div class="field-row">
+              <label for="text17">Occupation</label>
+              <input id="text17" type="text" placeholder="e.g. Designer" />
+            </div>
+            <div class="field-row">
+              <label for="text18">Search</label>
+              <input id="text18" type="search" placeholder="Search" />
+            </div>
+            <div class="field-row">
+              <label for="text19">Disabled</label>
+              <input id="text19" type="text" value="Can't touch this" disabled />
+            </div>
+            <div class="field-row-stacked" style="width: 280px">
+              <label for="text20">Address</label>
+              <textarea id="text20" rows="4"></textarea>
+            </div>
+          `) %>
+        </section>
+
+        <section class="component" id="dropdown">
+          <h2>Dropdown</h2>
+          <p>
+            A <code>&lt;select&gt;</code> renders as a Windows 11 ComboBox. With
+            <code>multiple</code> or a <code>size</code> it becomes a list box.
+          </p>
+          <%- example(`
+            <div class="field-row">
+              <select>
+                <option>5 - Incredible!</option>
+                <option>4 - Great!</option>
+                <option selected>3 - Pretty good</option>
+                <option>2 - Not so great</option>
+                <option>1 - Unfortunate</option>
+              </select>
+              <select disabled>
+                <option>Disabled</option>
+              </select>
+            </div>
+            <br />
+            <select size="4" style="width: 200px">
+              <option>Documents</option>
+              <option selected>Pictures</option>
+              <option>Music</option>
+              <option>Videos</option>
+            </select>
+          `) %>
+        </section>
+
+        <section class="component" id="slider">
+          <h2>Slider</h2>
+          <p>
+            An <code>input[type=range]</code>. Wrap it in
+            <code>.is-vertical</code> for a vertical slider.
+          </p>
+          <%- example(`
+            <div class="field-row" style="width: 320px">
+              <label for="range22">Volume</label>
+              <input id="range22" type="range" min="1" max="11" value="5" />
+            </div>
+            <div class="field-row" style="width: 320px">
+              <label for="range23">Disabled</label>
+              <input id="range23" type="range" min="1" max="11" value="7" disabled />
+            </div>
+            <div class="field-row">
+              <div class="is-vertical">
+                <input type="range" min="1" max="3" step="1" value="2" aria-label="Vertical slider" />
+              </div>
+            </div>
+          `) %>
+        </section>
+
+        <section class="component" id="progress">
+          <h2>ProgressBar</h2>
+          <p>
+            A <code>&lt;progress&gt;</code> with a <code>value</code> is
+            determinate; without one it animates. <code>.progress-ring</code>
+            is the Windows 11 spinning ring.
+          </p>
+          <%- example(`
+            <div class="field-row-stacked" style="width: 320px">
+              <progress value="40" max="100" style="width: 100%"></progress>
+              <progress style="width: 100%"></progress>
+            </div>
+            <br />
+            <span class="progress-ring" role="progressbar" aria-label="Loading"></span>
+          `) %>
+        </section>
+
+        <section class="component" id="group-box">
+          <h2>GroupBox</h2>
+          <p>
+            A <code>&lt;fieldset&gt;</code> renders as a Windows 11 settings
+            card, and its <code>&lt;legend&gt;</code> becomes the card heading.
+          </p>
+          <%- example(`
+            <fieldset style="width: 320px">
+              <legend>Today's mood</legend>
+              <div class="field-row">
+                <input id="radio17" type="radio" name="fieldset-example" checked />
+                <label for="radio17">Claire Saffitz</label>
+              </div>
+              <div class="field-row">
+                <input id="radio18" type="radio" name="fieldset-example" />
+                <label for="radio18">Brad Leone</label>
+              </div>
+              <div class="field-row">
+                <input id="radio19" type="radio" name="fieldset-example" />
+                <label for="radio19">Chris Morocco</label>
+              </div>
+            </fieldset>
+          `) %>
+        </section>
+
+        <section class="component" id="tabs">
+          <h2>Tabs</h2>
+          <p>
+            A <code>menu[role=tablist]</code> of <code>button[role=tab]</code>
+            followed by a <code>[role=tabpanel]</code>. Mark the current tab
+            with <code>aria-selected="true"</code>. By default tabs look like
+            the Windows 11 Settings selector; add <code>.tabview</code> to the
+            menu for browser-style tabs.
+          </p>
+          <%- example(`
+            <menu role="tablist" aria-label="Sample tabs">
+              <button role="tab" aria-selected="true" aria-controls="tab-a">Desktop</button>
+              <button role="tab" aria-controls="tab-b">My computer</button>
+              <button role="tab" aria-controls="tab-c">Control panel</button>
+            </menu>
+            <article role="tabpanel" id="tab-a">
+              <p>The tab content.</p>
+            </article>
+          `) %>
+          <%- example(`
+            <menu role="tablist" class="tabview" aria-label="Browser tabs">
+              <button role="tab" aria-selected="true" aria-controls="tab-d">Home</button>
+              <button role="tab" aria-controls="tab-e">Documents</button>
+            </menu>
+            <article role="tabpanel" id="tab-d">
+              <p>TabView content.</p>
+            </article>
+          `) %>
+        </section>
+
+        <section class="component" id="list-view">
+          <h2>ListView</h2>
+          <p>
+            A <code>&lt;table&gt;</code> inside a <code>.sunken-panel</code>.
+            <code>table.interactive</code> adds row hover, and
+            <code>tr.highlighted</code> marks the selected row.
+          </p>
+          <%- example(`
+            <div class="sunken-panel" style="height: 160px; width: 420px">
+              <table class="interactive" style="width: 100%">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Date modified</th>
+                    <th>Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Budget.xlsx</td><td>9/29/2026</td><td>Worksheet</td></tr>
+                  <tr class="highlighted"><td>Cover letter.docx</td><td>9/30/2026</td><td>Document</td></tr>
+                  <tr><td>Holiday.jpg</td><td>8/14/2026</td><td>JPG File</td></tr>
+                  <tr><td>Notes.txt</td><td>10/1/2026</td><td>Text Document</td></tr>
+                  <tr><td>Slides.pptx</td><td>9/02/2026</td><td>Presentation</td></tr>
+                  <tr><td>Song.mp3</td><td>7/11/2026</td><td>MP3 File</td></tr>
+                </tbody>
+              </table>
+            </div>
+          `) %>
+        </section>
+
+        <section class="component" id="tree-view">
+          <h2>TreeView</h2>
+          <p>
+            A <code>ul.tree-view</code>. Use
+            <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> for
+            expandable items.
+          </p>
+          <%- example(`
+            <ul class="tree-view" style="width: 260px">
+              <li><a href="#tree-view">Home</a></li>
+              <li>
+                <details open>
+                  <summary>This PC</summary>
+                  <ul>
+                    <li>Desktop</li>
+                    <li>
+                      <details>
+                        <summary>Documents</summary>
+                        <ul>
+                          <li>Work</li>
+                          <li>Personal</li>
+                        </ul>
+                      </details>
+                    </li>
+                    <li>Downloads</li>
+                  </ul>
+                </details>
+              </li>
+              <li>Network</li>
+            </ul>
+          `) %>
+        </section>
+
+        <section class="component" id="tooltip">
+          <h2>Tooltip</h2>
+          <p>
+            An element with <code>role="tooltip"</code>. Windows 11 tooltips
+            have no tail; the 7.css position classes are accepted.
+          </p>
+          <%- example(`
+            <div role="tooltip">Copy (Ctrl+C)</div>
+          `) %>
+        </section>
+
+        <section class="component" id="theming">
+          <h2>Theming</h2>
+          <h3>Dark mode</h3>
+          <p>
+            11.css follows the operating system's light or dark setting. To
+            force a theme, set <code>data-theme="light"</code> or
+            <code>data-theme="dark"</code> on <code>&lt;html&gt;</code> (or add
+            <code>.win11-dark</code> / <code>data-theme="dark"</code> to any
+            element to darken just that part of the page).
+          </p>
+          <%- example(`
+            <div data-theme="dark" style="padding: 24px; border-radius: 8px; background: #202020">
+              <div class="window" style="width: 300px">
+                <div class="title-bar">
+                  <div class="title-bar-text">Dark window</div>
+                  <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Close"></button>
+                  </div>
+                </div>
+                <div class="window-body">
+                  <div class="field-row">
+                    <input type="checkbox" role="switch" id="dark-switch" checked />
+                    <label for="dark-switch">Dark mode</label>
+                  </div>
+                  <section class="field-row" style="justify-content: flex-end">
+                    <button class="default">OK</button>
+                    <button>Cancel</button>
+                  </section>
+                </div>
+              </div>
+            </div>
+          `) %>
+
+          <h3>Accent colour</h3>
+          <p>
+            Override <code>--w11-accent</code> on any element; hover and
+            pressed shades are derived from it.
+          </p>
+          <%- example(`
+            <div style="--w11-accent: #c239b3">
+              <div class="field-row">
+                <button class="default">Accent button</button>
+                <input type="checkbox" id="accent-check" checked />
+                <label for="accent-check">Checked</label>
+              </div>
+              <progress value="70" max="100" style="width: 240px"></progress>
+            </div>
+          `) %>
+
+          <h3>Design tokens</h3>
+          <p>
+            Every colour, radius and shadow is a <code>--w11-*</code> custom
+            property defined in <code>gui/_tokens.css</code>. Override any of
+            them to adjust the look.
+          </p>
+        </section>
+
+        <section class="component" id="installation">
+          <h2>Installation</h2>
+          <p>From a CDN:</p>
+          <pre class="docs-note"><code>&lt;link rel="stylesheet" href="https://unpkg.com/11.css" /&gt;</code></pre>
+          <h3>Scoped</h3>
+          <p>
+            <code>dist/11.scoped.css</code> only styles elements inside a
+            <code>.win11</code> container, so it can live alongside other CSS.
+          </p>
+          <pre class="docs-note"><code>&lt;link rel="stylesheet" href="https://unpkg.com/11.css/dist/11.scoped.css" /&gt;
+&lt;div class="win11"&gt;…&lt;/div&gt;</code></pre>
+          <h3>Per component</h3>
+          <p>
+            Each component is also published on its own in
+            <code>dist/gui/</code>. Import <code>tokens.css</code> and
+            <code>base.css</code> first.
+          </p>
+          <pre class="docs-note"><code>import "11.css/dist/gui/tokens.css";
+import "11.css/dist/gui/base.css";
+import "11.css/dist/gui/button.css";</code></pre>
+        </section>
+
+        <section class="component" id="credits">
+          <h2>Credits</h2>
+          <p>
+            11.css follows the markup and approach of
+            <a href="https://github.com/jdan/98.css">98.css</a> by Jordan
+            Scales, <a href="https://github.com/botoxparty/XP.css">XP.css</a> by
+            Adam Hammad, and <a href="https://github.com/khang-nd/7.css">7.css</a>
+            by Khang Nguyen Duy, all MIT licensed.
+          </p>
+          <p>
+            Icons are from
+            <a href="https://github.com/microsoft/fluentui-system-icons">Fluent UI System Icons</a>,
+            &copy; Microsoft Corporation, MIT License.
+          </p>
+          <p class="docs-note">
+            11.css is not affiliated with, endorsed by, or sponsored by
+            Microsoft. Windows is a trademark of Microsoft Corporation. Fonts
+            such as Segoe UI are used only if already installed on your system;
+            they are not distributed with 11.css.
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      // Docs only — 11.css itself ships no JavaScript.
+      document
+        .querySelectorAll(".indeterminate-demo")
+        .forEach((input) => (input.indeterminate = true));
+
+      const themeSelect = document.getElementById("docs-theme");
+      themeSelect.value = document.documentElement.dataset.theme || "system";
+      themeSelect.addEventListener("change", () => {
+        const theme = themeSelect.value;
+        if (theme === "system") {
+          delete document.documentElement.dataset.theme;
+        } else {
+          document.documentElement.dataset.theme = theme;
+        }
+        try {
+          localStorage.setItem("11css-theme", theme);
+        } catch (error) {}
+      });
+
+      const accent = document.getElementById("docs-accent");
+      accent.addEventListener("input", () => {
+        document.documentElement.style.setProperty("--w11-accent", accent.value);
+      });
+      document.getElementById("docs-accent-reset").addEventListener("click", () => {
+        document.documentElement.style.removeProperty("--w11-accent");
+        accent.value = "#005fb8";
+      });
+
+      // Tabs in the examples: make them switch.
+      document.querySelectorAll('menu[role="tablist"]').forEach((menu) => {
+        menu.addEventListener("click", (event) => {
+          const tab = event.target.closest('[role="tab"]');
+          if (!tab) return;
+          menu.querySelectorAll('[role="tab"]').forEach((other) => {
+            other.setAttribute("aria-selected", String(other === tab));
+          });
+          const panel = menu.nextElementSibling;
+          if (panel && panel.getAttribute("role") === "tabpanel") {
+            panel.id = tab.getAttribute("aria-controls");
+            panel.querySelector("p").textContent = tab.textContent + " content.";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

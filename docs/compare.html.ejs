@@ -1,0 +1,137 @@
+<%
+  const sample = `
+<div class="window" style="width: 380px">
+  <div class="title-bar">
+    <div class="title-bar-text">Family comparison</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <menu role="tablist">
+      <button role="tab" aria-selected="true" aria-controls="p1">General</button>
+      <button role="tab" aria-controls="p2">Advanced</button>
+    </menu>
+    <article role="tabpanel" id="p1">
+      <fieldset>
+        <legend>Options</legend>
+        <div class="field-row">
+          <input type="checkbox" id="c1" checked>
+          <label for="c1">Remember me</label>
+        </div>
+        <div class="field-row">
+          <input type="radio" id="r1" name="r" checked>
+          <label for="r1">Yes</label>
+          <input type="radio" id="r2" name="r">
+          <label for="r2">No</label>
+        </div>
+        <div class="field-row">
+          <label for="t1">Name</label>
+          <input type="text" id="t1" value="Clippy">
+        </div>
+        <div class="field-row">
+          <label for="s1">Size</label>
+          <select id="s1"><option>Medium</option><option>Large</option></select>
+        </div>
+        <div class="field-row">
+          <label for="g1">Volume</label>
+          <input type="range" id="g1" value="40">
+        </div>
+      </fieldset>
+      <p><progress value="60" max="100" style="width: 100%"></progress></p>
+      <div class="sunken-panel" style="height: 90px">
+        <table class="interactive" style="width: 100%">
+          <thead><tr><th>Name</th><th>Size</th></tr></thead>
+          <tbody>
+            <tr><td>readme.txt</td><td>1 KB</td></tr>
+            <tr class="highlighted"><td>photo.jpg</td><td>240 KB</td></tr>
+            <tr><td>notes.md</td><td>3 KB</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="tree-view" style="margin-top: 8px">
+        <li><details open><summary>Documents</summary><ul><li>Work</li><li>Personal</li></ul></details></li>
+      </ul>
+    </article>
+    <section class="field-row" style="justify-content: flex-end; margin-top: 8px">
+      <button class="default">OK</button>
+      <button>Cancel</button>
+    </section>
+  </div>
+  <div class="status-bar">
+    <p class="status-bar-field">Ready</p>
+    <p class="status-bar-field">3 items</p>
+  </div>
+</div>`;
+
+  const variants = [
+    { name: "98.css", href: "https://unpkg.com/98.css", bg: "#008080" },
+    { name: "XP.css", href: "https://unpkg.com/xp.css", bg: "#3a6ea5" },
+    { name: "7.css", href: "https://unpkg.com/7.css", bg: "#1d5e8f" },
+    { name: "11.css", href: "11.css", bg: "#d7e3f2" },
+  ];
+
+  const escapeAttr = (value) =>
+    value
+      .replace(/&/g, "&amp;")
+      .replace(/"/g, "&quot;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+%><!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>11.css - Family comparison</title>
+    <link rel="stylesheet" href="11.css" />
+    <link rel="stylesheet" href="docs.css" />
+    <style>
+      .compare {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+        gap: 16px;
+        padding: 24px;
+      }
+
+      .compare figure {
+        margin: 0;
+      }
+
+      .compare figcaption {
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .compare iframe {
+        width: 100%;
+        height: 720px;
+        border: 1px solid var(--w11-card-stroke);
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="docs-main" style="max-width: none; padding-bottom: 0">
+        <h1>Family comparison</h1>
+        <p class="docs-lead">
+          The same HTML rendered with each library. 11.css aims to accept the
+          markup of its siblings unchanged. <a href="index.html">Back to the docs</a>
+        </p>
+      </div>
+      <div class="compare">
+        <% variants.forEach((variant) => { %>
+        <figure>
+          <figcaption><%= variant.name %></figcaption>
+          <iframe
+            title="<%= variant.name %>"
+            srcdoc="<%- escapeAttr(`<!doctype html><html data-theme=\"light\"><head><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"${variant.href}\"><style>body{margin:0;padding:24px;background:${variant.bg};font-family:sans-serif}</style></head><body>${sample}</body></html>`) %>"
+          ></iframe>
+        </figure>
+        <% }) %>
+      </div>
+    </main>
+  </body>
+</html>

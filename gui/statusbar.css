@@ -1,0 +1,32 @@
+/**
+ * 11.css — status bar.
+ */
+
+.status-bar {
+  display: flex;
+  flex: none;
+  align-items: stretch;
+  gap: 0;
+  margin: 0;
+  padding: 0 4px;
+  min-height: 24px;
+  border-top: 1px solid var(--w11-divider);
+  border-bottom-left-radius: calc(var(--w11-radius-window) - 1px);
+  border-bottom-right-radius: calc(var(--w11-radius-window) - 1px);
+  color: var(--w11-text-2);
+  font-size: var(--w11-font-size-caption);
+  line-height: 16px;
+}
+
+.status-bar-field {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin: 0;
+  padding: 4px 8px;
+  border-left: 1px solid var(--w11-divider);
+
+  &:first-of-type {
+    border-left: none;
+  }
+}

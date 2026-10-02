@@ -1,0 +1,64 @@
+/**
+ * 11.css — table (ListView / details view).
+ *
+ *   <div class="sunken-panel"><table class="interactive">…</table></div>
+ *   <tr class="highlighted"> marks the selected row.
+ */
+
+table {
+  position: relative;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--w11-card-solid);
+  color: var(--w11-text);
+  text-align: left;
+  white-space: nowrap;
+}
+
+table > thead > tr > * {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  height: 32px;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--w11-divider);
+  background: var(--w11-card-solid);
+  color: var(--w11-text-2);
+  font-size: var(--w11-font-size-caption);
+  font-weight: 400;
+
+  & + * {
+    box-shadow: inset 1px 0 0 var(--w11-divider);
+  }
+}
+
+table > tbody > tr > * {
+  height: 32px;
+  padding: 0 12px;
+}
+
+table.interactive > tbody > tr {
+  cursor: default;
+
+  &:hover > * {
+    background-color: var(--w11-subtle-hover);
+  }
+
+  &:active > * {
+    background-color: var(--w11-subtle-pressed);
+  }
+}
+
+table > tbody > tr.highlighted > * {
+  background-color: var(--w11-subtle-hover);
+  color: var(--w11-text);
+}
+
+/* Selection pill on the leading edge, like a WinUI ListView. */
+table > tbody > tr.highlighted > :first-child {
+  background-image: linear-gradient(var(--w11-accent), var(--w11-accent));
+  background-position: 0 center;
+  background-repeat: no-repeat;
+  background-size: 3px 16px;
+}

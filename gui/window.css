@@ -1,0 +1,185 @@
+/**
+ * 11.css — window, title bar and caption buttons.
+ *
+ * Markup is the same as 98.css / XP.css / 7.css:
+ *   .window > .title-bar (> .title-bar-text, .title-bar-controls > button[aria-label]) + .window-body
+ */
+
+.window {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  border: 1px solid var(--w11-window-stroke);
+  border-radius: var(--w11-radius-window);
+  background: var(--w11-bg-base);
+  box-shadow: var(--w11-shadow-window);
+  color: var(--w11-text);
+  line-height: var(--w11-line-height);
+
+  &.acrylic {
+    background: var(--w11-bg-acrylic);
+    -webkit-backdrop-filter: blur(30px) saturate(125%);
+    backdrop-filter: blur(30px) saturate(125%);
+  }
+}
+
+.window:has(> .title-bar.inactive) {
+  box-shadow: var(--w11-shadow-window-inactive);
+}
+
+.title-bar {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 32px;
+  padding: 0 0 0 12px;
+  border-top-left-radius: calc(var(--w11-radius-window) - 1px);
+  border-top-right-radius: calc(var(--w11-radius-window) - 1px);
+  background: transparent;
+  color: var(--w11-text);
+  font-size: var(--w11-font-size-caption);
+  user-select: none;
+}
+
+.title-bar-text {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  overflow: hidden;
+  font-size: var(--w11-font-size-caption);
+  line-height: 16px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  & img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.title-bar.inactive .title-bar-text {
+  color: var(--w11-text-disabled);
+}
+
+.title-bar-controls {
+  display: flex;
+  align-self: stretch;
+  flex: none;
+}
+
+.title-bar-controls button {
+  position: relative;
+  display: block;
+  width: 46px;
+  min-width: 46px;
+  height: 32px;
+  min-height: 32px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--w11-text);
+  font-size: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: var(--w11-caption-glyph-size, 10px);
+    height: var(--w11-caption-glyph-size, 10px);
+    background-color: currentColor;
+    -webkit-mask: var(--w11-caption-glyph) center / contain no-repeat;
+    mask: var(--w11-caption-glyph) center / contain no-repeat;
+  }
+
+  &:last-child {
+    border-top-right-radius: calc(var(--w11-radius-window) - 1px);
+  }
+
+  &:not(:disabled):hover {
+    background: var(--w11-subtle-hover);
+  }
+
+  &:not(:disabled):active {
+    background: var(--w11-subtle-pressed);
+    color: var(--w11-text-2);
+  }
+
+  &:disabled {
+    color: var(--w11-text-disabled);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--w11-focus-outer);
+    outline-offset: -2px;
+  }
+}
+
+.title-bar-controls button[aria-label="Minimize"],
+.title-bar-controls button[aria-label].minimize {
+  --w11-caption-glyph: svg-load("icon/subtract_12_regular.svg");
+}
+
+/* The 16px Fluent glyphs carry more padding than the 12px ones; draw them
+   larger so every caption glyph has the same ~10px optical size. */
+.title-bar-controls button[aria-label="Maximize"],
+.title-bar-controls button[aria-label].maximize {
+  --w11-caption-glyph: svg-load("icon/maximize_16_regular.svg");
+  --w11-caption-glyph-size: 13px;
+}
+
+.title-bar-controls button[aria-label="Restore"],
+.title-bar-controls button[aria-label].restore {
+  --w11-caption-glyph: svg-load("icon/square_multiple_16_regular.svg");
+  --w11-caption-glyph-size: 13px;
+}
+
+.title-bar-controls button[aria-label="Help"],
+.title-bar-controls button[aria-label].help {
+  --w11-caption-glyph: svg-load("icon/question_16_regular.svg");
+  --w11-caption-glyph-size: 14px;
+}
+
+.title-bar-controls button[aria-label="Close"],
+.title-bar-controls button[aria-label].close {
+  --w11-caption-glyph: svg-load("icon/dismiss_12_regular.svg");
+
+  &:not(:disabled):hover {
+    background: var(--w11-close-hover);
+    color: var(--w11-on-close);
+  }
+
+  &:not(:disabled):active {
+    background: var(--w11-close-pressed);
+    color: var(--w11-on-close);
+    opacity: 0.85;
+  }
+}
+
+.title-bar.inactive .title-bar-controls button:not(:hover) {
+  color: var(--w11-text-disabled);
+}
+
+.window-body {
+  margin: var(--w11-element-spacing);
+
+  &.has-space {
+    margin: 0;
+    padding: var(--w11-element-spacing) 16px 16px;
+  }
+
+  & pre {
+    margin: calc(-1 * var(--w11-element-spacing));
+  }
+}

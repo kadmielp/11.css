@@ -1,0 +1,100 @@
+/**
+ * 11.css — tree view.
+ *
+ *   <ul class="tree-view">
+ *     <li>Item</li>
+ *     <li><details open><summary>Folder</summary><ul><li>Child</li></ul></details></li>
+ *   </ul>
+ *
+ * Each nesting level indents by 20px; folders get a rotating chevron.
+ */
+
+ul.tree-view {
+  --w11-tree-indent: 20px;
+
+  display: block;
+  margin: 0;
+  padding: 4px;
+  border: 1px solid var(--w11-card-stroke);
+  border-radius: var(--w11-radius-overlay);
+  background: var(--w11-card-solid);
+  color: var(--w11-text);
+
+  /* Each <li> indents its own content, so nested lists add no padding. */
+  & ul {
+    margin: 0;
+    padding-left: 0;
+  }
+
+  & li {
+    position: relative;
+    margin: 0;
+    padding-left: var(--w11-tree-indent);
+    list-style: none;
+    line-height: 28px;
+  }
+
+  & a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  & a,
+  & summary {
+    display: block;
+    margin-left: -8px;
+    padding: 0 8px;
+    border-radius: var(--w11-radius-control);
+
+    &:hover {
+      background-color: var(--w11-subtle-hover);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--w11-focus-outer);
+      outline-offset: -2px;
+    }
+  }
+
+  & a:focus {
+    background: var(--w11-subtle-hover)
+      linear-gradient(var(--w11-accent), var(--w11-accent)) 0 center / 3px 16px
+      no-repeat;
+  }
+
+  & details {
+    margin: 0;
+
+    & > summary {
+      list-style: none;
+      cursor: default;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 8px;
+        left: 4px;
+        width: 12px;
+        height: 12px;
+        background-color: var(--w11-text-2);
+        -webkit-mask: svg-load("icon/chevron_right_12_regular.svg") center /
+          12px no-repeat;
+        mask: svg-load("icon/chevron_right_12_regular.svg") center / 12px
+          no-repeat;
+        transition: transform 0.1s ease;
+      }
+    }
+
+    &[open] > summary::before {
+      transform: rotate(90deg);
+    }
+  }
+}

@@ -1,0 +1,25 @@
+/**
+ * 11.css
+ * A design system for building faithful recreations of Windows 11 UIs.
+ * Part of the 98.css -> XP.css -> 7.css family; not affiliated with Microsoft.
+ * Icons: Fluent UI System Icons, (c) Microsoft Corporation, MIT License.
+ */
+
+@import "_tokens.css";
+@import "_base.css";
+@import "window.css";
+@import "statusbar.css";
+@import "button.css";
+@import "textbox.css";
+@import "select.css";
+@import "checkbox.css";
+@import "radio.css";
+@import "slider.css";
+@import "progress.css";
+@import "tabs.css";
+@import "groupbox.css";
+@import "panel.css";
+@import "table.css";
+@import "treeview.css";
+@import "scrollbar.css";
+@import "balloon.css";

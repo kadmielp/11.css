@@ -1,0 +1,49 @@
+/**
+ * 11.css — scrollbars.
+ *
+ * Thin rounded thumbs that thicken on hover. Applied page-wide like 98.css
+ * and XP.css; .has-scrollbar (7.css) gets the same styles.
+ */
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  min-height: 24px;
+  border: 4px solid transparent;
+  border-radius: 6px;
+  background-color: var(--w11-scroll-thumb);
+  background-clip: padding-box;
+
+  &:hover {
+    border-width: 3px;
+  }
+
+  &:active {
+    border-width: 3px;
+    background-color: var(--w11-text-2);
+  }
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Browsers without ::-webkit-scrollbar (Firefox). */
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--w11-scroll-thumb) transparent;
+  }
+}

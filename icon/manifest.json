@@ -1,0 +1,16 @@
+{
+  "$comment": "Fluent UI System Icons copied into icon/ by `npm run icons`. Each entry is [name, size, style] from @fluentui/svg-icons.",
+  "icons": [
+    ["subtract", 12, "regular"],
+    ["maximize", 16, "regular"],
+    ["square_multiple", 16, "regular"],
+    ["dismiss", 12, "regular"],
+    ["question", 16, "regular"],
+    ["checkmark", 12, "regular"],
+    ["chevron_down", 12, "regular"],
+    ["chevron_up", 12, "regular"],
+    ["chevron_right", 12, "regular"],
+    ["chevron_left", 12, "regular"],
+    ["search", 16, "regular"]
+  ]
+}

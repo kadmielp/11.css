@@ -1,0 +1,52 @@
+{
+  "name": "11.css",
+  "version": "0.1.0",
+  "description": "A design system for building faithful recreations of Windows 11 UIs with semantic HTML",
+  "main": "dist/11.css",
+  "style": "dist/11.css",
+  "files": [
+    "dist/gui",
+    "dist/11*"
+  ],
+  "scripts": {
+    "start": "node server.js",
+    "icons": "node scripts/sync-icons.js",
+    "build": "node build.js",
+    "screenshots": "npm run build && node scripts/screenshots.js",
+    "test": "npm run build && playwright test",
+    "test:update": "npm run build && playwright test --update-snapshots",
+    "deploy": "npm run build && gh-pages -d dist",
+    "release": "npm run build && npm publish"
+  },
+  "keywords": [
+    "css",
+    "windows11",
+    "fluent",
+    "98.css",
+    "xp.css",
+    "7.css"
+  ],
+  "author": "kadmielp",
+  "license": "MIT",
+  "homepage": "https://github.com/kadmielp/11.css",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kadmielp/11.css.git"
+  },
+  "devDependencies": {
+    "@fluentui/svg-icons": "1.1.343",
+    "@playwright/test": "^1.63.0",
+    "autoprefixer": "^10.6.1",
+    "chokidar": "^5.0.0",
+    "cssnano": "^8.0.10",
+    "dedent": "^1.7.2",
+    "ejs": "^6.0.1",
+    "gh-pages": "^6.3.0",
+    "highlight.js": "^11.12.0",
+    "postcss": "^8.5.28",
+    "postcss-import": "^17.0.0",
+    "postcss-inline-svg": "^6.0.0",
+    "postcss-nested": "^8.0.1",
+    "postcss-prefix-selector": "^2.2.1"
+  }
+}

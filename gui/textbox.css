@@ -1,0 +1,98 @@
+/**
+ * 11.css — text boxes and text areas.
+ */
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="url"],
+input[type="tel"],
+textarea {
+  box-sizing: border-box;
+  min-height: 32px;
+  padding: 5px 10px 6px 11px;
+  border: 1px solid var(--w11-control-stroke);
+  border-bottom-color: var(--w11-control-strong-stroke);
+  border-radius: var(--w11-radius-control);
+  background-color: var(--w11-control-fill);
+  color: var(--w11-text);
+  font-family: var(--w11-font);
+  font-size: var(--w11-font-size);
+  line-height: 20px;
+  -webkit-appearance: none;
+  appearance: none;
+
+  &::placeholder {
+    color: var(--w11-text-2);
+    opacity: 1;
+  }
+
+  &:hover:not(:disabled):not(:focus) {
+    background-color: var(--w11-control-fill-hover);
+  }
+
+  &:focus {
+    outline: none;
+    border-bottom-color: var(--w11-accent);
+    background-color: var(--w11-control-fill-input-active);
+    box-shadow: inset 0 -1px 0 var(--w11-accent);
+  }
+
+  &:disabled {
+    border-color: var(--w11-control-stroke);
+    background-color: var(--w11-control-fill-disabled);
+    color: var(--w11-text-disabled);
+
+    &::placeholder {
+      color: var(--w11-text-disabled);
+    }
+  }
+
+  &:read-only:not(:disabled) {
+    background-color: var(--w11-control-fill-disabled);
+  }
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Search box: magnifier on the right, like the Windows 11 AutoSuggestBox. */
+input[type="search"] {
+  padding-right: 34px;
+  background-image: svg-load(
+    "icon/search_16_regular.svg",
+    fill=rgba(0, 0, 0, 0.606)
+  );
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+
+  &::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not(.win11-light) input[type="search"] {
+    background-image: svg-load(
+      "icon/search_16_regular.svg",
+      fill=rgba(255, 255, 255, 0.786)
+    );
+  }
+}
+
+[data-theme="dark"] input[type="search"],
+.win11-dark input[type="search"] {
+  background-image: svg-load(
+    "icon/search_16_regular.svg",
+    fill=rgba(255, 255, 255, 0.786)
+  );
+}
+
+/* Number box: keep the native spinner, but quieter. */
+input[type="number"]::-webkit-inner-spin-button {
+  opacity: 0.6;
+}

@@ -1,0 +1,11 @@
+/**
+ * 11.css — sunken panel (scrollable content frame, e.g. around a table).
+ */
+
+.sunken-panel {
+  box-sizing: border-box;
+  overflow: auto;
+  border: 1px solid var(--w11-card-stroke);
+  border-radius: var(--w11-radius-overlay);
+  background: var(--w11-card-solid);
+}
