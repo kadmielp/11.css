@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>11.css - Family comparison</title>
+    <link rel="stylesheet" href="11.css" />
+    <link rel="stylesheet" href="docs.css" />
+    <style>
+      .compare {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+        gap: 16px;
+        padding: 24px;
+      }
+
+      .compare figure {
+        margin: 0;
+      }
+
+      .compare figcaption {
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .compare iframe {
+        width: 100%;
+        height: 720px;
+        border: 1px solid var(--w11-card-stroke);
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="docs-main" style="max-width: none; padding-bottom: 0">
+        <h1>Family comparison</h1>
+        <p class="docs-lead">
+          The same HTML rendered with each library. 11.css aims to accept the
+          markup of its siblings unchanged. <a href="index.html">Back to the docs</a>
+        </p>
+      </div>
+      <div class="compare">
+        
+        <figure>
+          <figcaption>98.css</figcaption>
+          <iframe
+            title="98.css"
+            srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/98.css&quot;&gt;&lt;style&gt;body{margin:0;padding:24px;background:#008080;font-family:sans-serif}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;
+&lt;div class=&quot;window&quot; style=&quot;width: 380px&quot;&gt;
+  &lt;div class=&quot;title-bar&quot;&gt;
+    &lt;div class=&quot;title-bar-text&quot;&gt;Family comparison&lt;/div&gt;
+    &lt;div class=&quot;title-bar-controls&quot;&gt;
+      &lt;button aria-label=&quot;Minimize&quot;&gt;&lt;/button&gt;
+      &lt;button aria-label=&quot;Maximize&quot;&gt;&lt;/button&gt;
+      &lt;button aria-label=&quot;Close&quot;&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;window-body&quot;&gt;
+    &lt;menu role=&quot;tablist&quot;&gt;
+      &lt;button role=&quot;tab&quot; aria-selected=&quot;true&quot; aria-controls=&quot;p1&quot;&gt;General&lt;/button&gt;
+      &lt;button role=&quot;tab&quot; aria-controls=&quot;p2&quot;&gt;Advanced&lt;/button&gt;
+    &lt;/menu&gt;
+    &lt;article role=&quot;tabpanel&quot; id=&quot;p1&quot;&gt;
+      &lt;fieldset&gt;
+        &lt;legend&gt;Options&lt;/legend&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;input type=&quot;checkbox&quot; id=&quot;c1&quot; checked&gt;
+          &lt;label for=&quot;c1&quot;&gt;Remember me&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;input type=&quot;radio&quot; id=&quot;r1&quot; name=&quot;r&quot; checked&gt;
+          &lt;label for=&quot;r1&quot;&gt;Yes&lt;/label&gt;
+          &lt;input type=&quot;radio&quot; id=&quot;r2&quot; name=&quot;r&quot;&gt;
+          &lt;label for=&quot;r2&quot;&gt;No&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;label for=&quot;t1&quot;&gt;Name&lt;/label&gt;
+          &lt;input type=&quot;text&quot; id=&quot;t1&quot; value=&quot;Clippy&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;label for=&quot;s1&quot;&gt;Size&lt;/label&gt;
+          &lt;select id=&quot;s1&quot;&gt;&lt;option&gt;Medium&lt;/option&gt;&lt;option&gt;Large&lt;/option&gt;&lt;/select&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;label for=&quot;g1&quot;&gt;Volume&lt;/label&gt;
+          &lt;input type=&quot;range&quot; id=&quot;g1&quot; value=&quot;40&quot;&gt;
+        &lt;/div&gt;
+      &lt;/fieldset&gt;
+      &lt;p&gt;&lt;progress value=&quot;60&quot; max=&quot;100&quot; style=&quot;width: 100%&quot;&gt;&lt;/progress&gt;&lt;/p&gt;
+      &lt;div class=&quot;sunken-panel&quot; style=&quot;height: 90px&quot;&gt;
+        &lt;table class=&quot;interactive&quot; style=&quot;width: 100%&quot;&gt;
+          &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Size&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+          &lt;tbody&gt;
+            &lt;tr&gt;&lt;td&gt;readme.txt&lt;/td&gt;&lt;td&gt;1 KB&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr class=&quot;highlighted&quot;&gt;&lt;td&gt;photo.jpg&lt;/td&gt;&lt;td&gt;240 KB&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;notes.md&lt;/td&gt;&lt;td&gt;3 KB&lt;/td&gt;&lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/div&gt;
+      &lt;ul class=&quot;tree-view&quot; style=&quot;margin-top: 8px&quot;&gt;
+        &lt;li&gt;&lt;details open&gt;&lt;summary&gt;Documents&lt;/summary&gt;&lt;ul&gt;&lt;li&gt;Work&lt;/li&gt;&lt;li&gt;Personal&lt;/li&gt;&lt;/ul&gt;&lt;/details&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/article&gt;
+    &lt;section class=&quot;field-row&quot; style=&quot;justify-content: flex-end; margin-top: 8px&quot;&gt;
+      &lt;button class=&quot;default&quot;&gt;OK&lt;/button&gt;
+      &lt;button&gt;Cancel&lt;/button&gt;
+    &lt;/section&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;status-bar&quot;&gt;
+    &lt;p class=&quot;status-bar-field&quot;&gt;Ready&lt;/p&gt;
+    &lt;p class=&quot;status-bar-field&quot;&gt;3 items&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;"
+          ></iframe>
+        </figure>
+        
+        <figure>
+          <figcaption>XP.css</figcaption>
+          <iframe
+            title="XP.css"
+            srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/xp.css&quot;&gt;&lt;style&gt;body{margin:0;padding:24px;background:#3a6ea5;font-family:sans-serif}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;
+&lt;div class=&quot;window&quot; style=&quot;width: 380px&quot;&gt;
+  &lt;div class=&quot;title-bar&quot;&gt;
+    &lt;div class=&quot;title-bar-text&quot;&gt;Family comparison&lt;/div&gt;
+    &lt;div class=&quot;title-bar-controls&quot;&gt;
+      &lt;button aria-label=&quot;Minimize&quot;&gt;&lt;/button&gt;
+      &lt;button aria-label=&quot;Maximize&quot;&gt;&lt;/button&gt;
+      &lt;button aria-label=&quot;Close&quot;&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;window-body&quot;&gt;
+    &lt;menu role=&quot;tablist&quot;&gt;
+      &lt;button role=&quot;tab&quot; aria-selected=&quot;true&quot; aria-controls=&quot;p1&quot;&gt;General&lt;/button&gt;
+      &lt;button role=&quot;tab&quot; aria-controls=&quot;p2&quot;&gt;Advanced&lt;/button&gt;
+    &lt;/menu&gt;
+    &lt;article role=&quot;tabpanel&quot; id=&quot;p1&quot;&gt;
+      &lt;fieldset&gt;
+        &lt;legend&gt;Options&lt;/legend&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;input type=&quot;checkbox&quot; id=&quot;c1&quot; checked&gt;
+          &lt;label for=&quot;c1&quot;&gt;Remember me&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;input type=&quot;radio&quot; id=&quot;r1&quot; name=&quot;r&quot; checked&gt;
+          &lt;label for=&quot;r1&quot;&gt;Yes&lt;/label&gt;
+          &lt;input type=&quot;radio&quot; id=&quot;r2&quot; name=&quot;r&quot;&gt;
+          &lt;label for=&quot;r2&quot;&gt;No&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;label for=&quot;t1&quot;&gt;Name&lt;/label&gt;
+          &lt;input type=&quot;text&quot; id=&quot;t1&quot; value=&quot;Clippy&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;label for=&quot;s1&quot;&gt;Size&lt;/label&gt;
+          &lt;select id=&quot;s1&quot;&gt;&lt;option&gt;Medium&lt;/option&gt;&lt;option&gt;Large&lt;/option&gt;&lt;/select&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;label for=&quot;g1&quot;&gt;Volume&lt;/label&gt;
+          &lt;input type=&quot;range&quot; id=&quot;g1&quot; value=&quot;40&quot;&gt;
+        &lt;/div&gt;
+      &lt;/fieldset&gt;
+      &lt;p&gt;&lt;progress value=&quot;60&quot; max=&quot;100&quot; style=&quot;width: 100%&quot;&gt;&lt;/progress&gt;&lt;/p&gt;
+      &lt;div class=&quot;sunken-panel&quot; style=&quot;height: 90px&quot;&gt;
+        &lt;table class=&quot;interactive&quot; style=&quot;width: 100%&quot;&gt;
+          &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Size&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+          &lt;tbody&gt;
+            &lt;tr&gt;&lt;td&gt;readme.txt&lt;/td&gt;&lt;td&gt;1 KB&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr class=&quot;highlighted&quot;&gt;&lt;td&gt;photo.jpg&lt;/td&gt;&lt;td&gt;240 KB&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;notes.md&lt;/td&gt;&lt;td&gt;3 KB&lt;/td&gt;&lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/div&gt;
+      &lt;ul class=&quot;tree-view&quot; style=&quot;margin-top: 8px&quot;&gt;
+        &lt;li&gt;&lt;details open&gt;&lt;summary&gt;Documents&lt;/summary&gt;&lt;ul&gt;&lt;li&gt;Work&lt;/li&gt;&lt;li&gt;Personal&lt;/li&gt;&lt;/ul&gt;&lt;/details&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/article&gt;
+    &lt;section class=&quot;field-row&quot; style=&quot;justify-content: flex-end; margin-top: 8px&quot;&gt;
+      &lt;button class=&quot;default&quot;&gt;OK&lt;/button&gt;
+      &lt;button&gt;Cancel&lt;/button&gt;
+    &lt;/section&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;status-bar&quot;&gt;
+    &lt;p class=&quot;status-bar-field&quot;&gt;Ready&lt;/p&gt;
+    &lt;p class=&quot;status-bar-field&quot;&gt;3 items&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;"
+          ></iframe>
+        </figure>
+        
+        <figure>
+          <figcaption>7.css</figcaption>
+          <iframe
+            title="7.css"
+            srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/7.css&quot;&gt;&lt;style&gt;body{margin:0;padding:24px;background:#1d5e8f;font-family:sans-serif}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;
+&lt;div class=&quot;window&quot; style=&quot;width: 380px&quot;&gt;
+  &lt;div class=&quot;title-bar&quot;&gt;
+    &lt;div class=&quot;title-bar-text&quot;&gt;Family comparison&lt;/div&gt;
+    &lt;div class=&quot;title-bar-controls&quot;&gt;
+      &lt;button aria-label=&quot;Minimize&quot;&gt;&lt;/button&gt;
+      &lt;button aria-label=&quot;Maximize&quot;&gt;&lt;/button&gt;
+      &lt;button aria-label=&quot;Close&quot;&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;window-body&quot;&gt;
+    &lt;menu role=&quot;tablist&quot;&gt;
+      &lt;button role=&quot;tab&quot; aria-selected=&quot;true&quot; aria-controls=&quot;p1&quot;&gt;General&lt;/button&gt;
+      &lt;button role=&quot;tab&quot; aria-controls=&quot;p2&quot;&gt;Advanced&lt;/button&gt;
+    &lt;/menu&gt;
+    &lt;article role=&quot;tabpanel&quot; id=&quot;p1&quot;&gt;
+      &lt;fieldset&gt;
+        &lt;legend&gt;Options&lt;/legend&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;input type=&quot;checkbox&quot; id=&quot;c1&quot; checked&gt;
+          &lt;label for=&quot;c1&quot;&gt;Remember me&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;input type=&quot;radio&quot; id=&quot;r1&quot; name=&quot;r&quot; checked&gt;
+          &lt;label for=&quot;r1&quot;&gt;Yes&lt;/label&gt;
+          &lt;input type=&quot;radio&quot; id=&quot;r2&quot; name=&quot;r&quot;&gt;
+          &lt;label for=&quot;r2&quot;&gt;No&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;label for=&quot;t1&quot;&gt;Name&lt;/label&gt;
+          &lt;input type=&quot;text&quot; id=&quot;t1&quot; value=&quot;Clippy&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;label for=&quot;s1&quot;&gt;Size&lt;/label&gt;
+          &lt;select id=&quot;s1&quot;&gt;&lt;option&gt;Medium&lt;/option&gt;&lt;option&gt;Large&lt;/option&gt;&lt;/select&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;label for=&quot;g1&quot;&gt;Volume&lt;/label&gt;
+          &lt;input type=&quot;range&quot; id=&quot;g1&quot; value=&quot;40&quot;&gt;
+        &lt;/div&gt;
+      &lt;/fieldset&gt;
+      &lt;p&gt;&lt;progress value=&quot;60&quot; max=&quot;100&quot; style=&quot;width: 100%&quot;&gt;&lt;/progress&gt;&lt;/p&gt;
+      &lt;div class=&quot;sunken-panel&quot; style=&quot;height: 90px&quot;&gt;
+        &lt;table class=&quot;interactive&quot; style=&quot;width: 100%&quot;&gt;
+          &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Size&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+          &lt;tbody&gt;
+            &lt;tr&gt;&lt;td&gt;readme.txt&lt;/td&gt;&lt;td&gt;1 KB&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr class=&quot;highlighted&quot;&gt;&lt;td&gt;photo.jpg&lt;/td&gt;&lt;td&gt;240 KB&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;notes.md&lt;/td&gt;&lt;td&gt;3 KB&lt;/td&gt;&lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/div&gt;
+      &lt;ul class=&quot;tree-view&quot; style=&quot;margin-top: 8px&quot;&gt;
+        &lt;li&gt;&lt;details open&gt;&lt;summary&gt;Documents&lt;/summary&gt;&lt;ul&gt;&lt;li&gt;Work&lt;/li&gt;&lt;li&gt;Personal&lt;/li&gt;&lt;/ul&gt;&lt;/details&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/article&gt;
+    &lt;section class=&quot;field-row&quot; style=&quot;justify-content: flex-end; margin-top: 8px&quot;&gt;
+      &lt;button class=&quot;default&quot;&gt;OK&lt;/button&gt;
+      &lt;button&gt;Cancel&lt;/button&gt;
+    &lt;/section&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;status-bar&quot;&gt;
+    &lt;p class=&quot;status-bar-field&quot;&gt;Ready&lt;/p&gt;
+    &lt;p class=&quot;status-bar-field&quot;&gt;3 items&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;"
+          ></iframe>
+        </figure>
+        
+        <figure>
+          <figcaption>11.css</figcaption>
+          <iframe
+            title="11.css"
+            srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;11.css&quot;&gt;&lt;style&gt;body{margin:0;padding:24px;background:#d7e3f2;font-family:sans-serif}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;
+&lt;div class=&quot;window&quot; style=&quot;width: 380px&quot;&gt;
+  &lt;div class=&quot;title-bar&quot;&gt;
+    &lt;div class=&quot;title-bar-text&quot;&gt;Family comparison&lt;/div&gt;
+    &lt;div class=&quot;title-bar-controls&quot;&gt;
+      &lt;button aria-label=&quot;Minimize&quot;&gt;&lt;/button&gt;
+      &lt;button aria-label=&quot;Maximize&quot;&gt;&lt;/button&gt;
+      &lt;button aria-label=&quot;Close&quot;&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;window-body&quot;&gt;
+    &lt;menu role=&quot;tablist&quot;&gt;
+      &lt;button role=&quot;tab&quot; aria-selected=&quot;true&quot; aria-controls=&quot;p1&quot;&gt;General&lt;/button&gt;
+      &lt;button role=&quot;tab&quot; aria-controls=&quot;p2&quot;&gt;Advanced&lt;/button&gt;
+    &lt;/menu&gt;
+    &lt;article role=&quot;tabpanel&quot; id=&quot;p1&quot;&gt;
+      &lt;fieldset&gt;
+        &lt;legend&gt;Options&lt;/legend&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;input type=&quot;checkbox&quot; id=&quot;c1&quot; checked&gt;
+          &lt;label for=&quot;c1&quot;&gt;Remember me&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;input type=&quot;radio&quot; id=&quot;r1&quot; name=&quot;r&quot; checked&gt;
+          &lt;label for=&quot;r1&quot;&gt;Yes&lt;/label&gt;
+          &lt;input type=&quot;radio&quot; id=&quot;r2&quot; name=&quot;r&quot;&gt;
+          &lt;label for=&quot;r2&quot;&gt;No&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;label for=&quot;t1&quot;&gt;Name&lt;/label&gt;
+          &lt;input type=&quot;text&quot; id=&quot;t1&quot; value=&quot;Clippy&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;label for=&quot;s1&quot;&gt;Size&lt;/label&gt;
+          &lt;select id=&quot;s1&quot;&gt;&lt;option&gt;Medium&lt;/option&gt;&lt;option&gt;Large&lt;/option&gt;&lt;/select&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field-row&quot;&gt;
+          &lt;label for=&quot;g1&quot;&gt;Volume&lt;/label&gt;
+          &lt;input type=&quot;range&quot; id=&quot;g1&quot; value=&quot;40&quot;&gt;
+        &lt;/div&gt;
+      &lt;/fieldset&gt;
+      &lt;p&gt;&lt;progress value=&quot;60&quot; max=&quot;100&quot; style=&quot;width: 100%&quot;&gt;&lt;/progress&gt;&lt;/p&gt;
+      &lt;div class=&quot;sunken-panel&quot; style=&quot;height: 90px&quot;&gt;
+        &lt;table class=&quot;interactive&quot; style=&quot;width: 100%&quot;&gt;
+          &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Size&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+          &lt;tbody&gt;
+            &lt;tr&gt;&lt;td&gt;readme.txt&lt;/td&gt;&lt;td&gt;1 KB&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr class=&quot;highlighted&quot;&gt;&lt;td&gt;photo.jpg&lt;/td&gt;&lt;td&gt;240 KB&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;notes.md&lt;/td&gt;&lt;td&gt;3 KB&lt;/td&gt;&lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/div&gt;
+      &lt;ul class=&quot;tree-view&quot; style=&quot;margin-top: 8px&quot;&gt;
+        &lt;li&gt;&lt;details open&gt;&lt;summary&gt;Documents&lt;/summary&gt;&lt;ul&gt;&lt;li&gt;Work&lt;/li&gt;&lt;li&gt;Personal&lt;/li&gt;&lt;/ul&gt;&lt;/details&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/article&gt;
+    &lt;section class=&quot;field-row&quot; style=&quot;justify-content: flex-end; margin-top: 8px&quot;&gt;
+      &lt;button class=&quot;default&quot;&gt;OK&lt;/button&gt;
+      &lt;button&gt;Cancel&lt;/button&gt;
+    &lt;/section&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;status-bar&quot;&gt;
+    &lt;p class=&quot;status-bar-field&quot;&gt;Ready&lt;/p&gt;
+    &lt;p class=&quot;status-bar-field&quot;&gt;3 items&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;"
+          ></iframe>
+        </figure>
+        
+      </div>
+    </main>
+  </body>
+</html>
